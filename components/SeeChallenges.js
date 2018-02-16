@@ -14,8 +14,7 @@ import React, { Component } from 'react';
 import { List, ListItem, SearchBar } from "react-native-elements";
   
   export default class SeeChallenges extends Component {
-
-    
+//See the challenges I have recorded
 
     static navigationOptions = ({
       navigation})=>({
@@ -24,24 +23,13 @@ import { List, ListItem, SearchBar } from "react-native-elements";
   
     });
 
-    GetItem (item) {
-    //  var appToken = "r15ae15300147833b83403406cc336ca";
-    //  Ziggeo.setAppToken(appToken);
-    //  Ziggeo.play(item.ziggeo_id);
+ 
 
-
- //     global.selectedviewmessage = item.sender;
-
-  global.z= item.ziggeo_id;
-  global.description = item.description;
-alert('descri' + global.description);
-
-  this.props.navigation.navigate('View_Request');
-     }
-
-     cso=(id)=>{
-     
-        this.props.navigation.navigate('Choose_Friend',{id:id});
+     cso=(item)=>{
+        global.challengename= item.description;
+        global.ziggeo_id= item.ziggeo_id;
+        //Choose a friend to challenge this challenge
+        this.props.navigation.navigate('Choose_Friend',{id:item._id});
      }
 
 
@@ -88,7 +76,7 @@ alert('descri' + global.description);
           
      <View style={styles.content}>
        <View style={styles.inputContainer}>
-     
+         <Text>Select one of your challenges</Text>
        <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
    
        <FlatList
@@ -99,7 +87,7 @@ alert('descri' + global.description);
  
             <ListItem
     roundAvatar
-    onPress={() =>  this.GetItem(item)}
+    onPress={() =>  this.cso(item)}
     title={`${item.description} `}
     subtitle={item.description}
    

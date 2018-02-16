@@ -6,7 +6,8 @@ import {
     StyleSheet,
     Text,
     View,
-    FlatList
+    FlatList,
+    ScrollView
   } from 'react-native';
   import {StackNavigator} from  'react-navigation';
   import { List, ListItem, SearchBar } from "react-native-elements";
@@ -18,7 +19,7 @@ import React, { Component } from 'react';
 
     static navigationOptions = ({
       navigation})=>({
-      title: 'Search for friends' + global.user
+      title: 'Search for friends' 
      
   
     });
@@ -65,16 +66,19 @@ import React, { Component } from 'react';
 
 
       
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
       
           
      <View style={styles.content}>
+     <View>
      <Text>Search</Text>
+     </View>
+     
      <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
     <FlatList
     data={this.state.dataSource}
     onPress={(item)=>{
-      alert('item' + item)
+    
       this.GetItem(item)
     }}
     KeyExtractor={(x,i)=>i}
@@ -93,8 +97,10 @@ import React, { Component } from 'react';
       
       />
     </List>
+  
     </View>
-</View>
+
+</ScrollView>
 
       );
     }

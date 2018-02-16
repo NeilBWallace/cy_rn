@@ -1,4 +1,4 @@
-package com.reactnativedemo;
+package com.challyounw;
 
 import com.facebook.react.ReactFragmentActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactFragmentActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "ReactNativeDemo";
+        return "challyounw";
     }
 }

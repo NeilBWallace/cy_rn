@@ -6,7 +6,7 @@ import {
     StyleSheet,
     Text,
     View,
-    FlatList
+    FlatList,ScrollView
   } from 'react-native';
   import {StackNavigator} from  'react-navigation';
   import api from './api';
@@ -98,7 +98,7 @@ body: JSON.stringify({
         </Text>
         </TouchableOpacity>
 
-
+        
       <FlatList
       data={this.state.dataSource}
       onPress={(item)=>{

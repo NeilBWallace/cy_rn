@@ -17,10 +17,10 @@ import {
     
     export default class Choose_Friend extends Component {
   
-  
+  //Choose a friend to challenge
       static navigationOptions = ({
         navigation})=>({
-        title: 'Choose Friend',
+        title: 'Challenge Friend',
        
      
       });
@@ -33,7 +33,9 @@ import {
       this.state = {
           isLoading: true,
           dataSource: [],
-          challenge:''
+          challenge:'',
+          challenge_description: global.challengename
+          
         }
       }
 
@@ -42,7 +44,7 @@ import {
       componentDidMount() {
         const {state} = this.props.navigation;
         var name = state.params ? state.params.id : "<undefined>";
-    alert('name' + name);
+
     this.state.challenge =name;
 return fetch('https://lit-falls-96282.herokuapp.com/friend/get_friends',
 {method: "POST",
@@ -51,7 +53,8 @@ headers: {
   'Content-Type': 'application/json'
 },
 body: JSON.stringify({
-  user: global.user
+  user: global.user,
+  status:"2"
 })
 })
 .then((response) => response.json())
@@ -85,12 +88,50 @@ body: JSON.stringify({
       userPage=()=>{
         this.props.navigation.navigate('UserPage');
       }
-  
+      cso=(item)=>{
+      //challenge friend particular challenge
+
+        return fetch('https://lit-falls-96282.herokuapp.com/cs',
+        {method: "POST",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          challenger:global.user,
+          challenged:item.friend,
+         challenge: this.state.challenge,
+         challenge_description:this.state.challenge_description,
+         ziggeo_id:global.ziggeo_id,
+         state:"1"
+        })
+        })
+        .then((response) => response.json())
+        .then((res) => {
+         // just setState here e.g.
+          if(res.message=="undefined"){
+            alert("Something went wrong. Please try again.");
+          }else
+          {
+           alert('Your challenge has been sent to your friend');
+          }
+         
+           })
+           .done();
+          }
+                  
+      
+
+      
   
       render() {
         return (
-      
-    
+       <View>
+           <View>
+             <Text>Challenge:{global.challengename}</Text>
+             <Text>Choose one of your friends below to challenge</Text>
+           </View>
+           <View>
           <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
           
           <FlatList
@@ -104,9 +145,9 @@ body: JSON.stringify({
      
             <ListItem
     roundAvatar
-    onPress={() =>  this.cso(item._id)}
-    title={`${item.sender} `}
-    subtitle={item.sendee}
+    onPress={() =>  this.cso(item)}
+    title={`${item.friend} `}
+    subtitle={item.friend}
    
     >
       
@@ -118,6 +159,8 @@ body: JSON.stringify({
             
             />
             </List>
+         </View>
+         </View>
         );
       }
     }

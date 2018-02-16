@@ -10,6 +10,8 @@ import {
   } from 'react-native';
   import {StackNavigator} from  'react-navigation';
   
+import Badge from 'react-native-smart-badge'
+import IconBadge from 'react-native-icon-badge';
 import React, { Component } from 'react';
   
   
@@ -22,10 +24,11 @@ import React, { Component } from 'react';
      
       headerRight:
       <View style={styles.rw}>
-           <TouchableOpacity style={{backgroundColor:'red',margin:10,padding:10}} onPress={()=>navigation.navigate("New_Challenges")}><Text style={{color:'#ffffff'}}>Challenges</Text>
-    </TouchableOpacity>
- 
-      <TouchableOpacity style={{backgroundColor:'orange',margin:10,padding:10}} onPress={()=>navigation.navigate("Messages")}><Text style={{color:'#ffffff'}}>Messages</Text>
+  
+      <TouchableOpacity style={{margin:10,padding:10}} onPress={()=>navigation.navigate("UserSetup")}>
+      
+      <Image style={{width: 40, height: 40}}  source={require('./user_config.png')}>
+           </Image>
      </TouchableOpacity>
         </View>
     });
@@ -40,10 +43,11 @@ import React, { Component } from 'react';
     }
 
     challenge=()=>{
-     // this.props.navigation.navigate('ChallengeSO');
+     // record a challenge
        this.props.navigation.navigate('Describe_Challenge');
     }
     challenges=()=>{
+      //see my challenges I have recorded
       this.props.navigation.navigate('SeeChallenges');
     }
 
@@ -76,7 +80,9 @@ import React, { Component } from 'react';
             get_users(){
             fetch('https://lit-falls-96282.herokuapp.com/users/' + this.state.email)
             .then((response) => response.json())
-            .then((responseJson) => {
+            .then((responseJson) => 
+          
+            {
              // just setState here e.g.
              
             global.user= responseJson.username;
@@ -102,7 +108,8 @@ import React, { Component } from 'react';
                 'Content-Type': 'application/json'
               },
               body: JSON.stringify({
-                user: global.user
+                user: global.user,
+                status:"2"
               })
               })
               .then((response) => response.json())
@@ -151,12 +158,6 @@ import React, { Component } from 'react';
               
                  })
                 .done();
-
-
-
-
-
-
             }).then(()=>{
               
               fetch('https://lit-falls-96282.herokuapp.com/cs/get_challenge_states2',
@@ -187,20 +188,85 @@ import React, { Component } from 'react';
                  })
                 .done();
 
-
-
-
-            }).done();
+              }).then(()=>{
           // .catch((error) => {
           //    console.error(error);
           //  })
+
+       
+          fetch('https://lit-falls-96282.herokuapp.com/cs/get_challenge_states2',
+          {method: "POST",
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            user:global.user,
+           state:"1"
+          })
+          })
+          .then((response) => response.json())
+          .then((res) => {
+           // just setState here e.g.
+            if(res.message=="undefined"){
+              alert("Something went wrong. Please try again.");
+            }else
+            {
+              var count = Object.keys(res).length;
+           
+              this.setState({newChallengesCount:count});
+            
       
+            }
+          
+          }).done();
+
+          
+              }).then(()=>{
+                // .catch((error) => {
+                //    console.error(error);
+                //  })
+      
+             
+                fetch('https://lit-falls-96282.herokuapp.com/friend/get_request',
+                {method: "POST",
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  sendee:global.user,
+                 status:"1"
+                })
+                })
+                .then((response) => response.json())
+                .then((res) => {
+                 // just setState here e.g.
+                  if(res.message=="undefined"){
+                    alert("Something went wrong. Please try again.");
+                  }else
+                  {
+                    var count = Object.keys(res).length;
+                 
+                    this.setState({newFriendRequestCount:count});
+                  
+            
+                  }
+                
+                }).done();
+      
+                
+                    }).done();
+            
+            
+            
+            
       
       
       
       
             }
-    componentDidMount() {
+    componentWillMount() {
 
 
   return this.get_users();
@@ -231,7 +297,9 @@ import React, { Component } from 'react';
        dataSource:[],
        friendsCount:'',
        openChallengesCount:'',
-       completedChallengesCount:''
+       completedChallengesCount:'',
+       newChallengesCount:'',
+       newFriendRequestCount:''
     }
   }
 
@@ -244,14 +312,67 @@ import React, { Component } from 'react';
      
      <View style={styles.cont}>
          <View style={styles.content1}>
-      
+        
+ 
         
           <TouchableOpacity  onPress={() => this.search()}>
           <Image style={{width: 40, height: 40}}  source={require('./search.png')}>
            </Image>
            </TouchableOpacity>
-           <TouchableOpacity  onPress={() => this.user_config()}>
-          <Image style={{width: 40, height: 40}}  source={require('./user_config.png')}>
+
+           <TouchableOpacity style={{margin:10,padding:10}} onPress={()=> this.props.navigation.navigate("New_Challenges")}>
+           
+         <View style={{flexDirection: 'row',alignItems: 'center',justifyContent: 'center',}}>
+  <IconBadge
+    MainElement={
+      <View style={{
+        width:10,
+        height:10,
+        margin:6
+      }}/>
+    }
+    BadgeElement={
+      <Text style={{color:'#FFFFFF'}}>  {this.state.newChallengesCount}</Text>
+    }
+    IconBadgeStyle={
+    
+      {width:20,
+      height:20,
+      backgroundColor: '#FF00EE'}}
+    
+    Hidden={this.state.newChallengesCount==0}
+    />
+</View>
+    </TouchableOpacity>
+
+
+
+
+           <TouchableOpacity  onPress={() => this.messages()}>
+          <Image style={{width: 40, height: 40}}  source={require('./th.jpg')}>
+           
+         <View style={{flexDirection: 'row',alignItems: 'center',justifyContent: 'center',}}>
+  <IconBadge
+    MainElement={
+      <View style={{
+        width:10,
+        height:10,
+        margin:6
+      }}/>
+    }
+    BadgeElement={
+      <Text style={{color:'#FFFFFF'}}>  {this.state.newFriendRequestCount}</Text>
+    }
+    IconBadgeStyle={
+    
+      {width:20,
+      height:20,
+      backgroundColor: '#FF00EE'}}
+    
+    Hidden={this.state.newFriendRequestCount==0}
+    />
+</View>
+   
            </Image>
            </TouchableOpacity>
    
@@ -310,7 +431,7 @@ import React, { Component } from 'react';
        </Image>
         </TouchableOpacity>
 
-        <TouchableOpacity  onPress={() => this.challenge()}>
+        <TouchableOpacity  >
        <Image style={{width: 40, height: 40}} source={require('./location.png')}>
        </Image>
         </TouchableOpacity>

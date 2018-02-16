@@ -81,7 +81,7 @@ body: JSON.stringify({
 
       
       componentDidMount() {
-          alert(global.selecteduser);
+         
         return fetch('https://lit-falls-96282.herokuapp.com/users/name/' + global.selecteduser)
           .then((response) => response.json())
           .then((responseJson) => {

@@ -57,7 +57,8 @@ import {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          user: global.user
+          user: global.user,
+          status:"2"
         })
         })
         .then((response) => response.json())
@@ -78,7 +79,7 @@ import {
   
   }
   see_friend=(item)=>{
-    alert(item.friend);
+   
     global.selecteduser=item.friend;
     this.props.navigation.navigate('See_User_Name');
     

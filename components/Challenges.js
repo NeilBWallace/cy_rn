@@ -36,9 +36,9 @@ import {
         this.props.navigation.navigate('View_Request',{id:item.ziggeo_id});
        }
   
-       cso=(id)=>{
-        alert('id' + id )
-          this.props.navigation.navigate('Choose_Friend',{id:id});
+       cso=(item)=>{
+       
+          this.props.navigation.navigate('Choose_Friend',{id:iten});
        }
   
   

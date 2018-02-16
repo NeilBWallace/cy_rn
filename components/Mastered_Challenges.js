@@ -72,7 +72,11 @@ import { List, ListItem, SearchBar } from "react-native-elements";
            }
 
 
-         
+           view=(item)=>{
+            
+                this.props.navigation.navigate('View_Mastered_Challenge',{id:item._id,challenge:item.challenge,challenger:item.challenger,challenge_description:item.challenge_description,ziggeo_id:item.ziggeo_id});
+              
+          }
 
 
    
@@ -107,8 +111,8 @@ import { List, ListItem, SearchBar } from "react-native-elements";
   
 <ListItem
   roundAvatar
- 
-  title={`${item.challenge} `}
+  onPress={() =>  this.view(item)}
+  title={`${item.challenge_description} `}
   subtitle={`${item.challenger} `}
   >
 

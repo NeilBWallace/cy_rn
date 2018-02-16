@@ -71,7 +71,7 @@ body: JSON.stringify({
 .then((res) => {
 
  // just setState here e.g.
-   if(res.message == "Auth successful"){
+   if(res.message == "Login successful"){
     alert(res.message);
     this.GetDetails();
      var email=res.message;

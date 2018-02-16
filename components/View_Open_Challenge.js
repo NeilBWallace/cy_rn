@@ -12,59 +12,35 @@ import {
   import React, { Component } from 'react';
     
   import { List, ListItem, SearchBar } from "react-native-elements";
+
+  //View specific open Challenge
     export default class View_Open_Challenge extends Component {
         static navigationOptions = ({
             navigation})=>({
-            title:'View Open Challenge.'
+            title:'View Open Challenge'
            
         
           });
           constructor(props) {
             super(props);
-          
+            var a =this.props.navigation.state.params.id;
+       
           this.state = {
               isLoading: true,
-          description:'',
+              id:a,
+              challenger:this.props.navigation.state.params.challenger,
+              challenged:'',
               challenge:'',
-              dataSource:[],
-              ziggeo_id:''
+              challenge_description:this.props.navigation.state.params.challenge_description,
+              state:'',
+              ziggeo_id:this.props.navigation.state.params.ziggeo_id
             }
           }
 
 
 
-          
-    accept()
-    {
-        alert('challengeid' + global.ci);
-      return fetch('https://lit-falls-96282.herokuapp.com/cs/update_challenge',
-      {method: "PATCH",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        id: global.ci,
-        state: "2",
-    
-      })
-      })
-      .then((response) => response.json())
-      .then((res) => {
-      
-       // just setState here e.g.
-       
-    
-       
-        
-          })
-         .done();
-
-
-
-    }
     complete(){
-        alert('challengeid' + global.ci);
+      
         return fetch('https://lit-falls-96282.herokuapp.com/cs/update_challenge',
         {method: "PATCH",
         headers: {
@@ -72,7 +48,7 @@ import {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          id: global.ci,
+          id: this.state.id,
           state: "4",
       
         })
@@ -82,7 +58,7 @@ import {
         
          // just setState here e.g.
          
-      
+      alert('Challenge Completed');
          
           
             })
@@ -96,37 +72,12 @@ import {
     
     
           componentDidMount() {
-       //     const ziggeo = this.props.navigation;
-     //       this.state.challenge = ziggeo.params ? ziggeo.params.id : "<undefined>";
+          
          //   alert('challenge' +this.state.challenge);
         //    this.state.description = ziggeo.params ? ziggeo.params.description : "<undefined>";
         //     alert('description' + this.state.description);
      
-         fetch('https://lit-falls-96282.herokuapp.com/cs/cs',
-         {method: "POST",
-         headers: {
-           'Accept': 'application/json',
-           'Content-Type': 'application/json'
-         },
-         body: JSON.stringify({
-           id: global.ci
-         })
-         })
-         .then((response) => response.json())
-         .then((res) => {
-          // just setState here e.g.
-           if(res.message=="undefined"){
-             alert("Something went wrong. Please try again.");
-           }else
-           {
-          alert('res'+ global.cc);
-           this.state.ziggeo_id=global.cc;
-           
-             this.setState({ dataSource: res,isLoading: false });
-           }
-         
-            })
-           .done();
+     
    
 
 
@@ -140,7 +91,6 @@ import {
           view=()=>{
                 var appToken = "r15ae15300147833b83403406cc336ca";
      Ziggeo.setAppToken(appToken);
-    alert('zi'+ this.state.ziggeo_id);
      Ziggeo.play(this.state.ziggeo_id);
           }
 
@@ -149,7 +99,7 @@ import {
      
         
         decline=()=>{
-            alert('challengeid' + global.ci);
+    
             return fetch('https://lit-falls-96282.herokuapp.com/cs/update_challenge',
             {method: "PATCH",
             headers: {
@@ -157,7 +107,7 @@ import {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              id: global.ci,
+              id: this.state.id,
               state: "3",
           
             })
@@ -167,7 +117,7 @@ import {
             
              // just setState here e.g.
              
-          
+             alert('Challenge Declined');
              
               
                 })
@@ -193,37 +143,13 @@ import {
             
        <View style={styles.content}>
          <View style={styles.inputContainer}>
-       
+         <View><Text>Challenger:{this.state.challenger}</Text></View>
+     
+           <View><Text>Challenge:{this.state.challenge_description}</Text></View>
       
           
            <Button  title="View" onPress={() => this.view()}/>
-          
-    
-           <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
-          <FlatList
-          data={this.state.dataSource}
-          KeyExtractor={(x,i)=>i}
-          renderItem={({item}) =>
-         
-<ListItem
-    roundAvatar
-    onPress={() =>  this.GetItem(item)}
-    title={`${item.challenge} `}
-    subtitle={`${item.challenger} `}
-    >
-  
-      </ListItem>     
-            }
-            
-            />
- </List>
-        
-           </View>
-      </View>
-      <Button  title="Accept" onPress={() => this.accept()}>
-      
-        </Button>
-        <Button  title="Decline" onPress={() => this.decline()}>
+           <Button  title="Decline" onPress={() => this.decline()}>
       
         </Button>
 
@@ -234,6 +160,11 @@ import {
       
         </Button>
 
+        
+           </View>
+      </View>
+    
+   
   </View>
 
 

@@ -1,4 +1,4 @@
-package com.reactnativedemo;
+package com.challyounw;
 
 import android.app.Application;
 

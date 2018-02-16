@@ -15,7 +15,7 @@ import {
     
     export default class New_Challenges extends Component {
   
-      
+      //View New Challenges sent to me.
   
       static navigationOptions = ({
         navigation})=>({
@@ -32,12 +32,9 @@ import {
   
    //     global.selectedviewmessage = item.sender;
   
-  global.ci= item._id;
-  alert('id' + global.ci);
-  global.cc=item.challenge;
-  alert('id' + global.cc);
-    this.props.navigation.navigate('View_New_Challenge');
-       }
+  
+   this.props.navigation.navigate('View_New_Challenge',{id:item._id,challenge:item.challenge,challenger:item.challenger,challenge_description:item.challenge_description,ziggeo_id:item.ziggeo_id});
+  }
   
     
   
@@ -97,7 +94,7 @@ import {
               <ListItem
       roundAvatar
       onPress={() =>  this.GetItem(item)}
-      title={`${item.challenge} `}
+      title={`${item.challenge_description} `}
       subtitle={item.challenger}
      
       >

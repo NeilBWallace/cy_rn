@@ -50,46 +50,48 @@ import React, { Component } from 'react';
     rejectfriendrequest=()=>{
       
 
-return fetch('https://lit-falls-96282.herokuapp.com/friend',
-{method: "POST",
-headers: {
-'Accept': 'application/json',
-'Content-Type': 'application/json'
-},
-body: JSON.stringify({
-sender: global.user,
-sendee: this.state.username, 
-status:"1"
-})
-})
-.then((response) => response.json())
-.then((res) => {
-// just setState here e.g.
-if(res.message=="undefined"){
-  alert("Something went wrong. Please try again.");
-}else
-{
- alert(res.message);
-}
-
- })
- .done();
-}
+      return fetch('https://lit-falls-96282.herokuapp.com/friend/updatefrreq',
+      {method: "PATCH",
+      headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+      sender: global.selecteduser,
+      sendee: global.user, 
+      status:"3"
+      })
+      })
+      .then((response) => response.json())
+      .then((res) => {
+      // just setState here e.g.
+      if(res.message=="undefined"){
+        alert("Something went wrong. Please try again.");
+      }else
+      {
+       alert("Friend request declined");
+      }
+      
+       })
+       .done();
+      }
+      
+        
 
     
 
     acceptfriendrequest=()=>{
       
 
-return fetch('https://lit-falls-96282.herokuapp.com/friend//updatefrreq',
+return fetch('https://lit-falls-96282.herokuapp.com/friend/updatefrreq',
 {method: "PATCH",
 headers: {
 'Accept': 'application/json',
 'Content-Type': 'application/json'
 },
 body: JSON.stringify({
-sender: global.user,
-sendee: this.state.username, 
+sender: global.selecteduser,
+sendee: global.user, 
 status:"2"
 })
 })
@@ -100,7 +102,7 @@ if(res.message=="undefined"){
   alert("Something went wrong. Please try again.");
 }else
 {
- alert(res.message);
+ alert("You are now friends");
 }
 
  })
@@ -112,7 +114,7 @@ if(res.message=="undefined"){
 
     
     componentDidMount() {
-        alert(global.selecteduser);
+     
       return fetch('https://lit-falls-96282.herokuapp.com/users/name/' + global.selecteduser)
         .then((response) => response.json())
         .then((responseJson) => {

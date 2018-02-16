@@ -6,7 +6,7 @@ TouchableOpacity,
   Platform,
   StyleSheet,
   Text,
-  View
+  View,Image
 } from 'react-native';
 import {StackNavigator} from  'react-navigation';
 import Ziggeo from 'react-native-ziggeo-library';
@@ -14,6 +14,16 @@ import React, { Component } from 'react';
 
 
 export default class Describe_Challenge extends Component {
+
+
+
+  
+  static navigationOptions = ({
+    navigation})=>({
+    title: 'Record Challenge'
+   
+
+  });
 
   constructor(props) {
     super(props);
@@ -37,15 +47,13 @@ export default class Describe_Challenge extends Component {
     const subscription = recorderEmitter.addListener('UploadProgress',(progress)=>console.log(progress.fileName + " uploaded " + progress.bytesSent + " from " + progress.totalBytes + " total bytes"));
     try
     {
+      alert('Please wait while file uploads');
+      
         //record and upload the video and return its token
         var token = await Ziggeo.record();
         console.log("Token:"+token);
         if (token){
-          alert("global id" + global.id);
-          alert("description" +global.description);
-          alert("ziggeo id" + token)
-        alert("Token:"+token);
-
+    
 return fetch('https://lit-falls-96282.herokuapp.com/challenges',
 {method: "POST",
 headers: {
@@ -54,7 +62,7 @@ headers: {
 },
 body: JSON.stringify({
   userid:global.id,
-  description: global.description, 
+  description: this.state.description, 
   ziggeo_id: token
 })
 })
@@ -65,7 +73,7 @@ body: JSON.stringify({
     alert("Something went wrong. Please try again.");
   }else
   {
-   alert(res.message);
+   alert('Challenge Recorded');
   }
  
    })
@@ -83,100 +91,23 @@ body: JSON.stringify({
   }
 
 
-async upload() {
-    var appToken = "r15ae15300147833b83403406cc336ca";
-    Ziggeo.setAppToken(appToken);
-    const recorderEmitter = Ziggeo.recorderEmitter();
-    const subscription = recorderEmitter.addListener('UploadProgress',(progress)=>console.log(progress.fileName + " uploaded " + progress.bytesSent + " from " + progress.totalBytes + " total bytes"));
-    try
-    {
-        //select and upload the video and return its token
-        var token = await Ziggeo.upload();
-      
-
-
-
-
-
-
-
-
-
-        if (token){
-      //      Ziggeo.play(token);
-        
-        alert("global id" + global.id);
-        alert("description" +this.state.description);
-        alert("ziggeo id" + ziggeo_id)
-      alert("Token:"+token);
-
-return fetch('https://lit-falls-96282.herokuapp.com/challenges',
-{method: "POST",
-headers: {
-'Accept': 'application/json',
-'Content-Type': 'application/json'
-},
-body: JSON.stringify({
-username:global.id,
-description: this.state.description, 
-ziggeo_id: this.state.ziggeo_id
-})
-})
-.then((response) => response.json())
-.then((res) => {
-// just setState here e.g.
-if(res.message=="undefined"){
-  alert("Something went wrong. Please try again.");
-}else
-{
- alert(res.message);
-}
-this.props.navigation.navigate('Login');
- })
- .done();
-}
-        
-        
-          }
-    
-    catch(e)
-    {
-        //uploading error or upload was cancelled by user
-        alert(e);
-    }
-}
-
-async uploadFile() {
-    var appToken = "r15ae15300147833b83403406cc336ca";
-    Ziggeo.setAppToken(appToken);
-    const recorderEmitter = Ziggeo.recorderEmitter();
-    const subscription = recorderEmitter.addListener('UploadProgress',(progress)=>console.log(progress.fileName + " uploaded " + progress.bytesSent + " from " + progress.totalBytes + " total bytes"));
-    try
-    {
-        //upload some file by its name and return its token
-        var token = await Ziggeo.upload("FILE_NAME");
-        alert("Token:"+token);
-        if (token){
-            Ziggeo.play(token);
-        }
-    }
-    catch(e)
-    {
-        //uploading error or upload was cancelled by user
-        alert(e);
-    }
-}
 
  
   render() {
     return (
-     
-      <ImageBackground source={require('./challenge.png')}
-      style={{flex:1,width:null,height:null}}> 
+      <Image source={require('./challenge.png')}
+      
+        style={styles.backgroundImage}> 
+      
+      
     
 
-    <View style={styles.cont}>
-    <TextInput 
+    <View style={styles.container}>
+    
+      
+    <View style={styles.container}>
+    <Text>Record Challenge Below:</Text>
+    <TextInput style = {styles.input}
               placeholderTextColor='rgba(28,53,63, 1)'
               placeholder='Describe Challenge'
               autoCapitalize = 'none'
@@ -190,24 +121,36 @@ async uploadFile() {
         />
         </View>
 
-    
-    <View style={styles.container}>
-    
-        
-   <View style={styles.content}>
-     <View style={styles.inputContainer}>
+    </View>
    
-    
-       <Text>Home</Text>
-    
-       </View>
-  </View>
-</View>
-</ImageBackground>
+</Image>
     );
   }
 }
 
 const styles = StyleSheet.create({
- 
+  input: {
+    margin: 15,
+    height: 40,
+    borderColor: '#7a42f4',
+    borderWidth: 1
+ },
+  container:{
+    flex:1,
+  
+    justifyContent: 'center',
+        },
+  content:{
+  margin:10,
+  padding:10,
+    alignItems:'center',
+      justifyContent: 'center'
+      
+    },
+  backgroundImage: {
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'stretch'
+}
 });

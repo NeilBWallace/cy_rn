@@ -10,7 +10,7 @@ import {
       FlatList
     } from 'react-native';
     import {StackNavigator} from  'react-navigation';
-    
+    import { List, ListItem, SearchBar } from "react-native-elements";
   import React, { Component } from 'react';
     
     
@@ -19,7 +19,7 @@ import {
   
       static navigationOptions = ({
         navigation})=>({
-        title: 'Messages ' +global.user,
+        title: global.user + "'s Messages",
        
      
       });
@@ -43,13 +43,13 @@ import {
       },
       body: JSON.stringify({
         sendee: global.user, 
-     
+        status:"1"
       })
     })
       .then((response) => response.json())
       .then((res) => {
         this.setState({ dataSource: res,isLoading: false });
-        
+       
           })
          .done();
         }
@@ -66,25 +66,27 @@ import {
       render() {
         return (
       
+       
     
+          <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
+          <FlatList
+          data={this.state.dataSource}
+          KeyExtractor={(x,i)=>i}
+          renderItem={({item}) =>
+         
+<ListItem
+    roundAvatar
+    onPress={() =>  this.GetItem(item)}
+    title={`${item.sender} `}
+    subtitle={`is requesting to be your friend`}
+    >
+  
+      </ListItem>     
+            }
+            
+            />
+ </List>
 
-      <FlatList
-      data={this.state.dataSource}
-      onPress={(item)=>{
-        alert('item' + item)
-        this.GetItem(item)
-      }}
-      KeyExtractor={(x,i)=>i}
-      renderItem={({item}) =>
-      <TouchableOpacity onPress={() => this.GetItem(item)}>      
-      <Text>
-        {item.sender} is requesting to be your friend
-        </Text>
-        </TouchableOpacity>
-        
-        }
-        
-        />
         );
       }
     }

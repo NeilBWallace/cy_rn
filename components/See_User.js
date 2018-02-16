@@ -69,7 +69,7 @@ body: JSON.stringify({
     alert("Something went wrong. Please try again.");
   }else
   {
-   alert(res.message);
+   alert("Friend request sent");
   }
 
    })
@@ -81,7 +81,7 @@ body: JSON.stringify({
 
       
       componentDidMount() {
-          alert(global.selecteduser);
+       
         return fetch('https://lit-falls-96282.herokuapp.com/users/' + global.selecteduser)
           .then((response) => response.json())
           .then((responseJson) => {

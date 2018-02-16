@@ -74,7 +74,42 @@ import { List, ListItem, SearchBar } from "react-native-elements";
 
            }
 
+           complete(){
+            return fetch('https://lit-falls-96282.herokuapp.com/cs/update_challenge',
+            {method: "PATCH",
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              id: global.ci,
+              state: "4",
+          
+            })
+            })
+            .then((response) => response.json())
+            .then((res) => {
+            
+             // just setState here e.g.
+             
+          
+             
+              
+                })
+               .done();
+        
 
+           }
+
+         
+           back(){
+
+           }
+           view=(item)=>{
+        
+            this.props.navigation.navigate('View_Open_Challenge',{id:item._id,challenge:item.challenge,challenger:item.challenger,challenge_description:item.challenge_description,ziggeo_id:item.ziggeo_id});
+          
+      }
          
 
 
@@ -98,14 +133,14 @@ import { List, ListItem, SearchBar } from "react-native-elements";
   
          <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
         <FlatList
-        data={this.state.dataSource}
+         data={this.state.dataSource}
         KeyExtractor={(x,i)=>i}
         renderItem={({item}) =>
   
 <ListItem
   roundAvatar
- 
-  title={`${item.challenge} `}
+  onPress={() =>  this.view(item)}
+  title={`${item.challenge_description} `}
   subtitle={`${item.challenger} `}
   >
 
@@ -117,6 +152,7 @@ import { List, ListItem, SearchBar } from "react-native-elements";
       
          </View>
     </View>
+  
 
 </View>
 
