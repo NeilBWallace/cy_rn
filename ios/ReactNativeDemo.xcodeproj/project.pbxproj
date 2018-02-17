@@ -24,8 +24,9 @@
 		86950980F20849E5A4537D03 /* libRNReactNativeZiggeoLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F155EB428F49DCAA51CEAA /* libRNReactNativeZiggeoLibrary.a */; };
 		FAFC01391F2F95B30082F1AB /* Ziggeo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAFC01361F2F93200082F1AB /* Ziggeo.framework */; };
 		FAFC013A1F2F95B30082F1AB /* Ziggeo.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FAFC01361F2F93200082F1AB /* Ziggeo.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F6E664320DC145F7BC65C1B0 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B24D401E52BC44A6A3530D77 /* libRNFetchBlob.a */; };
-		FD33F14BAA634B06BB430D4A /* libimageCropPicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 158845A4A4FA4EF391868A9F /* libimageCropPicker.a */; };
+		B0A9A2393E414E29BDDC29F0 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DE61879DAFE477F8DD9461F /* libRNFetchBlob.a */; };
+		B1605CDC31FC49DD8A7EB3B0 /* libimageCropPicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82BBF83DA7F44F6C9F1F889D /* libimageCropPicker.a */; };
+		FF4E3602C5F742EB9DF1D193 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E214EA7F1B343168FB51854 /* libRNVectorIcons.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -280,10 +281,12 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		83F155EB428F49DCAA51CEAA /* libRNReactNativeZiggeoLibrary.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNReactNativeZiggeoLibrary.a; sourceTree = "<group>"; };
 		FAFC01361F2F93200082F1AB /* Ziggeo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Ziggeo.framework; sourceTree = "<group>"; };
-		3178D00C757E4F0B95B2AC09 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; name = "RNFetchBlob.xcodeproj"; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		B24D401E52BC44A6A3530D77 /* libRNFetchBlob.a */ = {isa = PBXFileReference; name = "libRNFetchBlob.a"; path = "libRNFetchBlob.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		FCB5CA7E96C54BCA9E43F4BE /* imageCropPicker.xcodeproj */ = {isa = PBXFileReference; name = "imageCropPicker.xcodeproj"; path = "../node_modules/react-native-image-crop-picker/ios/imageCropPicker.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		158845A4A4FA4EF391868A9F /* libimageCropPicker.a */ = {isa = PBXFileReference; name = "libimageCropPicker.a"; path = "libimageCropPicker.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		EDCCDA70E5F04A20829462F8 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; name = "RNFetchBlob.xcodeproj"; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		6DE61879DAFE477F8DD9461F /* libRNFetchBlob.a */ = {isa = PBXFileReference; name = "libRNFetchBlob.a"; path = "libRNFetchBlob.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		5EB83D06009E4A888D8DA3E5 /* imageCropPicker.xcodeproj */ = {isa = PBXFileReference; name = "imageCropPicker.xcodeproj"; path = "../node_modules/react-native-image-crop-picker/ios/imageCropPicker.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		82BBF83DA7F44F6C9F1F889D /* libimageCropPicker.a */ = {isa = PBXFileReference; name = "libimageCropPicker.a"; path = "libimageCropPicker.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		D3BC660A2C734D6088CB1E1E /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; name = "RNVectorIcons.xcodeproj"; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		1E214EA7F1B343168FB51854 /* libRNVectorIcons.a */ = {isa = PBXFileReference; name = "libRNVectorIcons.a"; path = "libRNVectorIcons.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,8 +307,9 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				86950980F20849E5A4537D03 /* libRNReactNativeZiggeoLibrary.a in Frameworks */,
-				F6E664320DC145F7BC65C1B0 /* libRNFetchBlob.a in Frameworks */,
-				FD33F14BAA634B06BB430D4A /* libimageCropPicker.a in Frameworks */,
+				B0A9A2393E414E29BDDC29F0 /* libRNFetchBlob.a in Frameworks */,
+				B1605CDC31FC49DD8A7EB3B0 /* libimageCropPicker.a in Frameworks */,
+				FF4E3602C5F742EB9DF1D193 /* libRNVectorIcons.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,8 +459,9 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				5A31E3D738A64278972DD7C1 /* RNReactNativeZiggeoLibrary.xcodeproj */,
-				3178D00C757E4F0B95B2AC09 /* RNFetchBlob.xcodeproj */,
-				FCB5CA7E96C54BCA9E43F4BE /* imageCropPicker.xcodeproj */,
+				EDCCDA70E5F04A20829462F8 /* RNFetchBlob.xcodeproj */,
+				5EB83D06009E4A888D8DA3E5 /* imageCropPicker.xcodeproj */,
+				D3BC660A2C734D6088CB1E1E /* RNVectorIcons.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -886,6 +891,7 @@
 					"$(SRCROOT)/../node_modules/react-native-ziggeo-library/ios",
 					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 				);
 				INFOPLIST_FILE = challyounw/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -898,6 +904,7 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/challyounw\"",
 					"\"$(SRCROOT)/challyounw\"",
 					"\"$(SRCROOT)/challyounw\"",
 				);
@@ -919,6 +926,7 @@
 					"$(SRCROOT)/../node_modules/react-native-ziggeo-library/ios",
 					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 				);
 				INFOPLIST_FILE = challyounw/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -931,6 +939,7 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/challyounw\"",
 					"\"$(SRCROOT)/challyounw\"",
 					"\"$(SRCROOT)/challyounw\"",
 				);

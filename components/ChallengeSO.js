@@ -29,10 +29,7 @@ import React, { Component } from 'react';
           var token = await Ziggeo.record();
           console.log("Token:"+token);
           if (token){
-            alert("global id" + global.id);
-            alert("description" +global.description);
-            alert("ziggeo id" + token)
-          alert("Token:"+token);
+             alert("Token:"+token);
   
   return fetch('https://lit-falls-96282.herokuapp.com/challenges',
   {method: "POST",

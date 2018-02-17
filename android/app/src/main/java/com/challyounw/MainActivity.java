@@ -1,6 +1,6 @@
 package com.challyounw;
-import com.ziggeo.ZiggeoPackage;
-import com.facebook.react.ReactActivity;
+
+import com.facebook.react.ReactFragmentActivity;
 
 public class MainActivity extends ReactFragmentActivity {
 

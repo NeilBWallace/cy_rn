@@ -94,11 +94,12 @@ android {
     buildToolsVersion "27.0.1"
 
     defaultConfig {
+         vectorDrawables.useSupportLibrary = true
         applicationId "com.challyounw"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 2
-        versionName "2.0"
+        versionCode 8
+        versionName "8.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -114,11 +115,13 @@ android {
     dexOptions {
         javaMaxHeapSize "4g"
     }
-   
+  
     buildTypes {
-     
+        debug {
+            manifestPlaceholders = [excludeSystemAlertWindowPermission: "false"]
+        }
         release {
-               minifyEnabled enableProguardInReleaseBuilds
+              minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
@@ -138,9 +141,10 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-fetch-blob')
     compile project(':react-native-ziggeo-library')
+    compile project(':react-native-vector-icons')
     compile project(':react-native-image-crop-picker')
+    compile project(':react-native-fetch-blob')
     implementation project(':react-native-ziggeo-library')
     implementation  fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:27.0.2"

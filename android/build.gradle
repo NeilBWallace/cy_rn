@@ -22,6 +22,11 @@ allprojects {
             url "$rootDir/../node_modules/react-native/android"
         }
         maven { url 'https://jitpack.io' }
+    maven {
+url "/Users/Location of your Android App Root so that node modules can be found/node_modules/react-native-fetch-blob/android"
+}
+    
+    
         google()
     }
 }

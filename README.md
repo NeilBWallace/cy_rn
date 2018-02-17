@@ -45,4 +45,3 @@
 ```javascript
 import Ziggeo from 'react-native-ziggeo-library';
 ```
-"# cy_rn" 

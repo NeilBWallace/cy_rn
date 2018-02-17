@@ -47,13 +47,12 @@ export default class Describe_Challenge extends Component {
     const subscription = recorderEmitter.addListener('UploadProgress',(progress)=>console.log(progress.fileName + " uploaded " + progress.bytesSent + " from " + progress.totalBytes + " total bytes"));
     try
     {
-      alert('Please wait while file uploads');
       
         //record and upload the video and return its token
         var token = await Ziggeo.record();
-        console.log("Token:"+token);
-        if (token){
     
+        if (token){
+          Ziggeo.play(token);
 return fetch('https://lit-falls-96282.herokuapp.com/challenges',
 {method: "POST",
 headers: {
@@ -69,6 +68,7 @@ body: JSON.stringify({
 .then((response) => response.json())
 .then((res) => {
  // just setState here e.g.
+
   if(res.message=="undefined"){
     alert("Something went wrong. Please try again.");
   }else
